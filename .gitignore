@@ -1,0 +1,6 @@
+# Documentation-only allowlist; applies to untracked files, not existing history.
+*
+!README.md
+!METHODS_OVERVIEW.md
+!.gitignore
+
