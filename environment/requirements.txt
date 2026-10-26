@@ -1,0 +1,12 @@
+# Installation template; not a historical lock or a tested complete environment.
+Pillow
+PyMuPDF
+kaleido
+matplotlib
+numpy
+openpyxl
+pandas
+plotly
+scikit-allel
+scipy
+seaborn

@@ -1,0 +1,18 @@
+{
+  "inspection_date": "2026-10-26",
+  "python_version": "3.12.14",
+  "scope": "Local packaging runtime inspection, not the original research environment; null means not installed here.",
+  "packages": {
+    "Pillow": "12.3.0",
+    "PyMuPDF": null,
+    "kaleido": null,
+    "matplotlib": null,
+    "numpy": "2.3.5",
+    "openpyxl": "3.1.5",
+    "pandas": "3.0.1",
+    "plotly": null,
+    "scikit-allel": null,
+    "scipy": null,
+    "seaborn": null
+  }
+}

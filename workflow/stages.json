@@ -1,0 +1,2803 @@
+[
+  {
+    "id": "abundance_wca_np__calc_NP_WCA_ratio",
+    "source_relative": "abundance_wca_np/calc_NP_WCA_ratio.R",
+    "released_relative": "analysis/abundance_wca_np/calc_NP_WCA_ratio.R",
+    "language": "R",
+    "working_directory": "abundance_wca_np",
+    "inputs": [
+      "abundance_wca_np/NP_WCA_final.xlsx",
+      "abundance_wca_np/genome_lon_lat.xlsx",
+      "env:THERMAL_BASELINE_GRID",
+      "env:THERMAL_BATHYMETRY_NC",
+      "env:THERMAL_FUTURE_GRID"
+    ],
+    "outputs": [
+      "abundance_wca_np/NP_WCA_global_ratio/NP_WCA_global_map_RF_v2.pdf",
+      "abundance_wca_np/NP_WCA_global_ratio/*"
+    ],
+    "requirements": [
+      "readxl",
+      "readr",
+      "dplyr",
+      "tidyr",
+      "ranger",
+      "ggplot2",
+      "scales",
+      "ncdf4"
+    ],
+    "status": "ported_pending_data",
+    "notes": "V4 Fig1a. External grids and model-training data not bundled.",
+    "module": "abundance_wca_np",
+    "source_sha256": "fb1f278bd2e599d740dcd6d091370692199ffd9b58711e2845fde42a2dedcd90",
+    "release_sha256": "753ea3320d6b9adcb1dcb9be3d8e77dea98dc147f3ea91dd03520478eaa21a0e"
+  },
+  {
+    "id": "abundance_wca_np__run_oga_analysis_v3",
+    "source_relative": "abundance_wca_np/run_oga_analysis_v3.sh",
+    "released_relative": "analysis/abundance_wca_np/run_oga_analysis_v3.sh",
+    "language": "Bash",
+    "working_directory": "abundance_wca_np",
+    "inputs": [
+      "arg1:ref_all_amoA.fasta",
+      "abundance_wca_np/ABY89139.1_nucl_homologs.fna",
+      "abundance_wca_np/abundance_matrix.csv"
+    ],
+    "outputs": [
+      "abundance_wca_np/oga_results/*"
+    ],
+    "requirements": [
+      "bash",
+      "BLAST+",
+      "python3",
+      "pandas",
+      "numpy",
+      "matplotlib"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Upstream OGA classification; reference headers must encode five ecotypes. Includes SRF and DCM; downstream selection must match the paper.",
+    "module": "abundance_wca_np",
+    "source_sha256": "8c977cb01dcb012ef4c0ed9156d9686d0eb89f1ea6efc7b82eaf02524225f75a",
+    "release_sha256": "72d43be72c71065721ccfb8a3a7536e84a587747754b68f5cde0c72ebd6b8958"
+  },
+  {
+    "id": "abundance_wca_np__coastal_amoA_diamond_v2",
+    "source_relative": "abundance_wca_np/coastal_amoA_diamond_v2.sh",
+    "released_relative": "analysis/abundance_wca_np/coastal_amoA_diamond_v2.sh",
+    "language": "Bash",
+    "working_directory": "abundance_wca_np",
+    "inputs": [
+      "arg1:ref_all_amoA.fasta",
+      "arg2:reads directory",
+      "arg3:optional sample_metadata.tsv"
+    ],
+    "outputs": [
+      "abundance_wca_np/coastal_amoA_results_v2/*"
+    ],
+    "requirements": [
+      "bash",
+      "DIAMOND",
+      "seqkit",
+      "python3",
+      "pandas",
+      "numpy",
+      "matplotlib"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Upstream coastal classification. No restricted reads, metadata or reference assignment table included.",
+    "module": "abundance_wca_np",
+    "source_sha256": "e145c52201c1ac1f98cc74638c340e21612e8c7864332010ac687f2e49b4a5d2",
+    "release_sha256": "8f7ec554bc1582a71892fd451b4546147109ea25f199fc0188fcb4e1ec3a97f6"
+  },
+  {
+    "id": "abundance_wca_np__supplementary_analysis_NP_WCA",
+    "source_relative": "abundance_wca_np/supplementary_analysis_NP_WCA.R",
+    "released_relative": "analysis/abundance_wca_np/supplementary_analysis_NP_WCA.R",
+    "language": "R",
+    "working_directory": "abundance_wca_np",
+    "inputs": [
+      "abundance_wca_np/NP_WCA_final.xlsx",
+      "abundance_wca_np/genome_lon_lat.xlsx",
+      "env:THERMAL_BASELINE_GRID"
+    ],
+    "outputs": [
+      "abundance_wca_np/NP_WCA_global_ratio/*"
+    ],
+    "requirements": [
+      "readxl",
+      "readr",
+      "dplyr",
+      "tidyr",
+      "ggplot2",
+      "mgcv",
+      "ppcor",
+      "patchwork"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Supporting NP/WCA partial-correlation and GAM analysis; final supplementary-panel mapping requires author confirmation.",
+    "module": "abundance_wca_np",
+    "source_sha256": "9fe73e2acedd6ef8261b82510c4fa3dd1e9f0df681ccf226a68a7c54eb8eea0c",
+    "release_sha256": "1143fefcb7f22f84c8a49ad9d58d118c263999bdde913cdce966fbbe8462f257"
+  },
+  {
+    "id": "ammonia_oxidation_rate_ESSD__plot_main_temperature_panels",
+    "source_relative": "ammonia_oxidation_rate_ESSD/plot_main_temperature_panels.py",
+    "released_relative": "analysis/ammonia_oxidation_rate_ESSD/plot_main_temperature_panels.py",
+    "language": "Python",
+    "working_directory": "ammonia_oxidation_rate_ESSD",
+    "inputs": [
+      "ammonia_oxidation_rate_ESSD/Database of nitrification and nitrifiers in the global ocean.xlsx"
+    ],
+    "outputs": [
+      "ammonia_oxidation_rate_ESSD/Fig_main_panel_AOA_abundance_vs_temp.*",
+      "ammonia_oxidation_rate_ESSD/Fig_main_panel_AO_rate_vs_temp_by_NH4.*",
+      "ammonia_oxidation_rate_ESSD/Fig_main_temperature_panels_preview.png"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "openpyxl",
+      "matplotlib",
+      "scipy",
+      "PyMuPDF"
+    ],
+    "status": "ported_pending_data",
+    "notes": "V4 Fig1b,c; public-source workbook must be acquired separately.",
+    "module": "ammonia_oxidation_rate_ESSD",
+    "source_sha256": "f852562534136b8053de27470bb09853249428117d866061ff0e5f3268d23599",
+    "release_sha256": "0cdc0b3f40a9f3e02db291dcdf4feef1ef1614f15a27c792bffa5b35e50b2aa4"
+  },
+  {
+    "id": "ammonia_oxidation_rate_ESSD__plot_AOA_map_redrawn",
+    "source_relative": "ammonia_oxidation_rate_ESSD/plot_AOA_map_redrawn.py",
+    "released_relative": "analysis/ammonia_oxidation_rate_ESSD/plot_AOA_map_redrawn.py",
+    "language": "Python",
+    "working_directory": "ammonia_oxidation_rate_ESSD",
+    "inputs": [
+      "ammonia_oxidation_rate_ESSD/Database of nitrification and nitrifiers in the global ocean.xlsx"
+    ],
+    "outputs": [
+      "ammonia_oxidation_rate_ESSD/Fig_AOA_map_redrawn.pdf",
+      "ammonia_oxidation_rate_ESSD/Fig_AOA_map_redrawn.png"
+    ],
+    "requirements": [
+      "pandas",
+      "openpyxl",
+      "plotly",
+      "kaleido",
+      "Chrome/Chromium for Kaleido"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Sampling-map supplementary candidate; renderer also requires geographic assets.",
+    "module": "ammonia_oxidation_rate_ESSD",
+    "source_sha256": "5be0af0b571af01a3927c1c915744c0a2355f29c0500a6c5cf2b2671cd0211eb",
+    "release_sha256": "51ada608672eacf979b5e2d5775d13917b563d3dcb3edb36693eaec490744cb4"
+  },
+  {
+    "id": "60weeks__60weeks",
+    "source_relative": "60weeks/60weeks.R",
+    "released_relative": "analysis/60weeks/60weeks.R",
+    "language": "R",
+    "working_directory": "60weeks",
+    "inputs": [
+      "60weeks/60week_NP_combined_relative_abundance_output.xlsx",
+      "60weeks/ENV.xlsx"
+    ],
+    "outputs": [
+      "60weeks/out_60weeks_by_station_mgonly/60weeks_station_week_table_mgonly.csv",
+      "60weeks/out_60weeks_by_station_mgonly/*"
+    ],
+    "requirements": [
+      "readxl",
+      "dplyr",
+      "tidyr",
+      "stringr",
+      "ggplot2",
+      "mgcv",
+      "segmented",
+      "tibble"
+    ],
+    "status": "historical_preparation_pending_restricted_data",
+    "notes": "Historical table-construction entry. Its CCF uses row-index lags, not elapsed calendar weeks; do not use that output for temporal-lag inference. Restricted data absent.",
+    "module": "60weeks",
+    "source_sha256": "c5ecce66bedb0b2b7fbbe6fa8baaceb116481b0ccdc0c75aa5cc8dd0c3f9c563",
+    "release_sha256": "e528b2f8edefcecce7124e40d0dbd3888a0be2679daac4ca495ae4aa83a3e344"
+  },
+  {
+    "id": "60weeks__Figure4_DE_time_series",
+    "source_relative": "60weeks/Figure4_DE_time_series.R",
+    "released_relative": "analysis/60weeks/Figure4_DE_time_series.R",
+    "language": "R",
+    "working_directory": "60weeks",
+    "inputs": [
+      "60weeks/out_60weeks_by_station_mgonly/60weeks_station_week_table_mgonly.csv"
+    ],
+    "outputs": [
+      "60weeks/out_60weeks_by_station_mgonly/Fig4_DE_ISME_style.pdf",
+      "60weeks/out_60weeks_by_station_mgonly/Fig4_DE_ISME_style.png"
+    ],
+    "requirements": [
+      "readr",
+      "dplyr",
+      "ggplot2",
+      "patchwork"
+    ],
+    "status": "blocked_restricted_data",
+    "notes": "V4 Fig3d observed series. Source filename retains an older figure number. Restricted inputs absent.",
+    "module": "60weeks",
+    "source_sha256": "808c4d1981a4911973a96c6d7c41f350b330d98ae8d6a62d8057cbf52a21358a",
+    "release_sha256": "02b9d71c52a7b48bd79da650741f251c380ab136633bdbd4b1f0b47526ef38ff"
+  },
+  {
+    "id": "60weeks__lag_reanalysis_20261015__reanalyse_actual_week_lags",
+    "source_relative": "60weeks/lag_reanalysis_20261015/reanalyse_actual_week_lags.R",
+    "released_relative": "analysis/60weeks/lag_reanalysis_20261015/reanalyse_actual_week_lags.R",
+    "language": "R",
+    "working_directory": "",
+    "inputs": [
+      "env:THERMAL_TIME_SERIES_SOURCE_WORKBOOK",
+      "60weeks/lag_reanalysis_20261015/input_workbook_md5.txt",
+      "60weeks/lag_reanalysis_20261015/input_submitted_Data3.csv",
+      "60weeks/out_60weeks_by_station_mgonly/60weeks_station_week_table_mgonly.csv"
+    ],
+    "outputs": [
+      "60weeks/lag_reanalysis_20261015/source_observations.csv",
+      "60weeks/lag_reanalysis_20261015/exact_week_lag_estimates.csv",
+      "60weeks/lag_reanalysis_20261015/explicit_actual_week_pairs.csv",
+      "60weeks/lag_reanalysis_20261015/*"
+    ],
+    "requirements": [
+      "R base",
+      "ggplot2 (with --figures)",
+      "patchwork (with --figures)",
+      "svglite (with --figures)",
+      "ragg (with --figures)"
+    ],
+    "status": "blocked_restricted_data_and_workbook_provenance",
+    "notes": "Exact-calendar-week audit. Frozen extraction and matching MD5 are required; V4 workbook sheet/filename reconciliation is not established. No restricted table or checksum copied.",
+    "module": "60weeks",
+    "source_sha256": "d007a6beafb6aa13966304d81727778cfe6e21fbe863082b92d6b3ae4c9ff099",
+    "release_sha256": "71dda471e78430be6f7a27aa078230585386ea1d0cdfd6d910d884678ca84a0d"
+  },
+  {
+    "id": "60weeks__dense_temperature_reanalysis_20261015__analyse_dense_temperature",
+    "source_relative": "60weeks/dense_temperature_reanalysis_20261015/analyse_dense_temperature.R",
+    "released_relative": "analysis/60weeks/dense_temperature_reanalysis_20261015/analyse_dense_temperature.R",
+    "language": "R",
+    "working_directory": "",
+    "inputs": [
+      "60weeks/lag_reanalysis_20261015/source_observations.csv",
+      "60weeks/dense_temperature_reanalysis_20261015/environment_temperature.csv"
+    ],
+    "outputs": [
+      "60weeks/dense_temperature_reanalysis_20261015/*"
+    ],
+    "requirements": [
+      "R base",
+      "mgcv",
+      "nlme"
+    ],
+    "status": "blocked_restricted_data",
+    "notes": "Actual-week temperature matching and common-cohort sensitivity. Dense environmental observations are restricted.",
+    "module": "60weeks",
+    "source_sha256": "2ae292b5739b05e0e7b6f37f4aba7af2dc4a791d8a4647d446e15db9b4b1a3d0",
+    "release_sha256": "e27912ce7b6f6e56b587e7570b4b6baf805f94bace3b6671c23f07f266351335"
+  },
+  {
+    "id": "kuroshio__kuroshio_analysis_v3",
+    "source_relative": "kuroshio/kuroshio_analysis_v3.R",
+    "released_relative": "analysis/kuroshio/kuroshio_analysis_v3.R",
+    "language": "R",
+    "working_directory": "kuroshio",
+    "inputs": [
+      "kuroshio/environmental_factor.xlsx",
+      "kuroshio/kuroshio_np_temp_abudance.xlsx"
+    ],
+    "outputs": [
+      "kuroshio/output_tables/*",
+      "kuroshio/output_figures/*"
+    ],
+    "requirements": [
+      "readxl",
+      "tibble",
+      "dplyr",
+      "tidyr",
+      "stringr",
+      "forcats",
+      "purrr",
+      "vegan",
+      "ggplot2",
+      "ggrepel",
+      "cowplot",
+      "patchwork",
+      "scales"
+    ],
+    "status": "blocked_restricted_data",
+    "notes": "Restricted data omitted. Environmental source workbook not found in the audited local module. Uses a fixed DCM-depth assignment; inspect README.",
+    "module": "kuroshio",
+    "source_sha256": "783136db081e819deb7532d53437d276eeef833740a3edc673f747b03ebc913e",
+    "release_sha256": "364257bc10e5ce40f1d01f1f186453dd86e005072ef9f5437ceae195935b4aec"
+  },
+  {
+    "id": "kuroshio__Fig4B_ratio_vs_temperature_depth_filtered",
+    "source_relative": "kuroshio/Fig4B_ratio_vs_temperature_depth_filtered.R",
+    "released_relative": "analysis/kuroshio/Fig4B_ratio_vs_temperature_depth_filtered.R",
+    "language": "R",
+    "working_directory": "kuroshio",
+    "inputs": [
+      "kuroshio/output_tables/meta_with_env_and_sum.csv",
+      "kuroshio/output_tables/watermass_labels.csv (optional)"
+    ],
+    "outputs": [
+      "kuroshio/Fig4B_ratio_vs_temperature_simplified.pdf",
+      "kuroshio/Fig4B_ratio_vs_temperature_simplified.png"
+    ],
+    "requirements": [
+      "readr",
+      "dplyr",
+      "ggplot2"
+    ],
+    "status": "blocked_restricted_data",
+    "notes": "V4 Fig3c. Source filename retains older figure numbering.",
+    "module": "kuroshio",
+    "source_sha256": "322cae9b9eadc7e2f50f6aeab2fc3421a880de7d00713ea265deaf886d3c3dec",
+    "release_sha256": "e7071683c062bdbcfecc2c003ca24a0e3b26e07d57649ab7c3aa1c1b4c560082"
+  },
+  {
+    "id": "kuroshio__FigS6_spatial_gradient",
+    "source_relative": "kuroshio/FigS6_spatial_gradient.R",
+    "released_relative": "analysis/kuroshio/FigS6_spatial_gradient.R",
+    "language": "R",
+    "working_directory": "kuroshio",
+    "inputs": [
+      "kuroshio/output_tables/meta_with_env_and_sum.csv",
+      "kuroshio/output_tables/watermass_labels.csv (optional)"
+    ],
+    "outputs": [
+      "kuroshio/Supplementary_Fig_S6_depth_filtered.pdf",
+      "kuroshio/Supplementary_Fig_S6_depth_filtered.png"
+    ],
+    "requirements": [
+      "readr",
+      "dplyr",
+      "tidyr",
+      "ggplot2",
+      "patchwork"
+    ],
+    "status": "blocked_restricted_data",
+    "notes": "V4 spatial supplementary candidate; original script filename preserved.",
+    "module": "kuroshio",
+    "source_sha256": "a1b7d8b48d3c86e4ca9a74e0b05d126c670275f44ba990f0d17295b9625d4f80",
+    "release_sha256": "9982d2d8de2c5cc54144986cef76811e39837156ade649f5ff62f13762e24117"
+  },
+  {
+    "id": "TEMP_experiment__plot_temperature_incubation_main_figure",
+    "source_relative": "TEMP_experiment/plot_temperature_incubation_main_figure.R",
+    "released_relative": "analysis/TEMP_experiment/plot_temperature_incubation_main_figure.R",
+    "language": "R",
+    "working_directory": "",
+    "inputs": [
+      "TEMP_experiment/Day0_Day30_Day60_two_group_relative_abundance_organized.xlsx"
+    ],
+    "outputs": [
+      "TEMP_experiment/Figure_Temperature_Incubation/*"
+    ],
+    "requirements": [
+      "readxl",
+      "dplyr",
+      "tidyr",
+      "ggplot2",
+      "patchwork",
+      "scales",
+      "svglite",
+      "ragg"
+    ],
+    "status": "ported_pending_data",
+    "notes": "V4 Fig3e,f and incubation supplement. Prepared workbook and raw sequence-to-workbook workflow not included. Removed machine-specific R library injection.",
+    "module": "TEMP_experiment",
+    "source_sha256": "f2beb03ebd62828c7bc7b12f61badac4b859820b7a2cd87e608bb166b909fcfc",
+    "release_sha256": "a3de41458252ebd199fe54fa35ff508609eecd250fb73dc3de53a9cced8e2190"
+  },
+  {
+    "id": "TEMP_experiment__validate_temperature_figure_outputs",
+    "source_relative": "TEMP_experiment/validate_temperature_figure_outputs.R",
+    "released_relative": "analysis/TEMP_experiment/validate_temperature_figure_outputs.R",
+    "language": "R",
+    "working_directory": "",
+    "inputs": [
+      "TEMP_experiment/Figure_Temperature_Incubation/*"
+    ],
+    "outputs": [
+      "stdout validation report"
+    ],
+    "requirements": [
+      "R base",
+      "png (optional)"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Validates generated tables and exports; study-design/selected-driver counts retained as explicit assertions.",
+    "module": "TEMP_experiment",
+    "source_sha256": "1162152e44a49118e3ffbcb9f7a34af92453b93731a56cf0f3f7999ace4b8141",
+    "release_sha256": "9a45748f339d49ffcae2f88f651bd375eb3729734e292f462acb8ccaf730fdc1"
+  },
+  {
+    "id": "instrain__run_instrain",
+    "source_relative": "instrain/run_instrain.sh",
+    "released_relative": "analysis/instrain/run_instrain.sh",
+    "language": "Bash",
+    "working_directory": "instrain",
+    "inputs": [
+      "instrain/fst_26samples.tsv",
+      "instrain/sample_manifest.tsv",
+      "env:THERMAL_AOA_REFERENCE_FASTA",
+      "env:THERMAL_AOA_STB",
+      "env:THERMAL_AOA_GENE_FASTA",
+      "manifest-linked read pairs"
+    ],
+    "outputs": [
+      "instrain/bam_instrain/*",
+      "instrain/instrain_profile/*",
+      "instrain/logs_instrain/*"
+    ],
+    "requirements": [
+      "bash",
+      "inStrain",
+      "bowtie2",
+      "samtools"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Requires user-owned reference collection, STB and genes; source continues past missing read pairs. Audit profile completeness before downstream aggregation.",
+    "module": "instrain",
+    "source_sha256": "ab75818623673a134417a2615607c8fc8f841c822d0ed2cdc0364c93cf652630",
+    "release_sha256": "b0747f687ada4f7c4c2da07a923bcff6bb157e515a6942359bc976d574c71a5a"
+  },
+  {
+    "id": "instrain__out__instrain_boxplot",
+    "source_relative": "instrain/out/instrain_boxplot.R",
+    "released_relative": "analysis/instrain/out/instrain_boxplot.R",
+    "language": "R",
+    "working_directory": "instrain/out",
+    "inputs": [
+      "instrain/out/instrain_coverage_dayu1.xlsx"
+    ],
+    "outputs": [
+      "instrain/out/instrain_boxplot.pdf",
+      "instrain/out/instrain_boxplot.png"
+    ],
+    "requirements": [
+      "readxl",
+      "dplyr",
+      "tidyr",
+      "ggplot2",
+      "patchwork",
+      "rstatix"
+    ],
+    "status": "blocked_pnps_and_filter_provenance",
+    "notes": "V4 Fig5c–f legacy plotting source only. pN_pS origin and upstream profile filter provenance unresolved; not evidence of validated opportunity-corrected pN/pS.",
+    "module": "instrain",
+    "source_sha256": "65f00c1b8a7c517cee9085e09e17f426d1d19cd460859d5151f0b162f5d1b01d",
+    "release_sha256": "32718703bc0392626a89c6dec84e24054962c9b9fa15ac0a42d9f4a40bd29475"
+  },
+  {
+    "id": "instrain__reanalyze_population_metrics",
+    "source_relative": "instrain/reanalyze_population_metrics.py",
+    "released_relative": "analysis/instrain/reanalyze_population_metrics.py",
+    "language": "Python",
+    "working_directory": "instrain",
+    "inputs": [
+      "instrain/out/instrain_coverage_dayu1.xlsx"
+    ],
+    "outputs": [
+      "instrain/reanalysis/sample_ecotype_metrics_qc.tsv",
+      "instrain/reanalysis/sample_ecotype_metric_tests.tsv",
+      "instrain/reanalysis/population_metric_audit.txt"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas>=2.2",
+      "scipy",
+      "openpyxl"
+    ],
+    "status": "sensitivity_pending_data",
+    "notes": "Independent sample-by-ecotype sensitivity analysis; excludes legacy pN_pS. Does not reproduce the V4 profile-level tests.",
+    "module": "instrain",
+    "source_sha256": "d2e1e9b2d93a7425dde431661494a303aba20a4c320850e65d65e5c7e6db46f1",
+    "release_sha256": "e6c6d44f6ac794bb663f8621a96d49fdb3294545a44cc2b86029dbdafb3f84f8"
+  },
+  {
+    "id": "tajima__01_mapping_and_calling",
+    "source_relative": "tajima/01_mapping_and_calling.sh",
+    "released_relative": "analysis/tajima/01_mapping_and_calling.sh",
+    "language": "Bash",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/sample_manifest.tsv",
+      "tajima/refs/HighT_representative.fna",
+      "tajima/refs/LowT_representative.fna",
+      "manifest-linked read pairs"
+    ],
+    "outputs": [
+      "tajima/bam/*",
+      "tajima/vcf/*",
+      "tajima/coverage/*",
+      "tajima/logs/*"
+    ],
+    "requirements": [
+      "bash",
+      "bowtie2",
+      "samtools",
+      "freebayes",
+      "bcftools",
+      "tabix"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Per-ecotype reference mapping and variant calls.",
+    "module": "tajima",
+    "source_sha256": "c81f2cfd01a1a5b0c327f3cbb4ae6b4d7589c5d4b50840904406532486087ee3",
+    "release_sha256": "5d79e8154bb353f9fa71c37fe80aa3879e4beac90caadee4d44d43a5724b103b"
+  },
+  {
+    "id": "tajima__02_merge_populations",
+    "source_relative": "tajima/02_merge_populations.sh",
+    "released_relative": "analysis/tajima/02_merge_populations.sh",
+    "language": "Bash",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/sample_manifest.tsv",
+      "tajima/coverage/*",
+      "tajima/vcf/*"
+    ],
+    "outputs": [
+      "tajima/HighT_samples_passing.txt",
+      "tajima/LowT_samples_passing.txt",
+      "tajima/vcf/HighT_population.vcf.gz",
+      "tajima/vcf/LowT_population.vcf.gz"
+    ],
+    "requirements": [
+      "bash",
+      "bcftools",
+      "tabix"
+    ],
+    "status": "ported_pending_data",
+    "notes": "QC-selected sample lists and population VCFs.",
+    "module": "tajima",
+    "source_sha256": "e62058dad9b370144e4f971b34bb09e5699065310f6591ec015a54ae49a99603",
+    "release_sha256": "644f0906ec8e5478608b815533d116c30d0ec7c7f2174c09e26bddcda32357ff"
+  },
+  {
+    "id": "tajima__03_popgen_analysis",
+    "source_relative": "tajima/03_popgen_analysis.py",
+    "released_relative": "analysis/tajima/03_popgen_analysis.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/vcf/HighT_population.vcf.gz",
+      "tajima/vcf/LowT_population.vcf.gz"
+    ],
+    "outputs": [
+      "tajima/results/popgen_summary.tsv",
+      "tajima/results/popgen_windowed.tsv",
+      "tajima/results/per_sample_pi.tsv"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scikit-allel"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Legacy GT-based population metrics used by integrated-figure source; exploratory pooled-metagenome interpretation only.",
+    "module": "tajima",
+    "source_sha256": "066b22d92f4d4a511641aef895bc523ae4deb6e514403abe32418014348878c7",
+    "release_sha256": "6b530d0323e902e16171977592e4d74e8954476becfd52e69f6c6be9ab9c2283"
+  },
+  {
+    "id": "tajima__06_fst_mapping",
+    "source_relative": "tajima/06_fst_mapping.sh",
+    "released_relative": "analysis/tajima/06_fst_mapping.sh",
+    "language": "Bash",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/sample_manifest.tsv",
+      "tajima/HighT_samples_passing.txt",
+      "tajima/LowT_samples_passing.txt",
+      "tajima/refs/LowT_representative.fna",
+      "tajima/bam/*",
+      "manifest-linked read pairs"
+    ],
+    "outputs": [
+      "tajima/vcf_shared/HighT_LowT_joint.vcf.gz",
+      "tajima/bam_shared/*",
+      "tajima/logs/*"
+    ],
+    "requirements": [
+      "bash",
+      "bowtie2",
+      "samtools",
+      "freebayes",
+      "bcftools",
+      "tabix",
+      "timeout"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Shared SPOT01 coordinates. Mapping/reference/sample correspondence must be checked externally.",
+    "module": "tajima",
+    "source_sha256": "0f75c52ec7c36ee9a3c0c97711b35d816e035afe284ffe52a6afb002fe9d9370",
+    "release_sha256": "271f5fdb1f8a916c334907321aa8d84b73c5c5960f0a262ff44be7d161340947"
+  },
+  {
+    "id": "tajima__07_fst_analysis",
+    "source_relative": "tajima/07_fst_analysis.py",
+    "released_relative": "analysis/tajima/07_fst_analysis.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/vcf_shared/HighT_LowT_joint.vcf.gz",
+      "tajima/HighT_samples_passing.txt",
+      "tajima/LowT_samples_passing.txt"
+    ],
+    "outputs": [
+      "tajima/results/fst_windowed.tsv",
+      "tajima/results/pairwise_fst_matrix.tsv",
+      "tajima/figures/fst_analysis.*"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scikit-allel",
+      "matplotlib",
+      "seaborn"
+    ],
+    "status": "ported_compatibility_repair_pending_reconciliation",
+    "notes": "V4 exploratory GT-based FST. Replaced absent windowed_hudson_fst API with windowed sums of Hudson components; unchanged site mask/windows. Pairwise haploid panels guard non-estimable groups. Numeric reconciliation pending.",
+    "module": "tajima",
+    "source_sha256": "552621ea80b5ab3c3147fc75483acedadf29c1bb30960cf3fc875ad7cbb4bdfd",
+    "release_sha256": "a14d80d12e6991b85f79bebd71424f85786435ef315d221cb216125f3deb1617"
+  },
+  {
+    "id": "tajima__07c_pairwise_snv_distance",
+    "source_relative": "tajima/07c_pairwise_snv_distance.py",
+    "released_relative": "analysis/tajima/07c_pairwise_snv_distance.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/vcf_shared/HighT_LowT_joint.vcf.gz",
+      "tajima/HighT_samples_passing.txt",
+      "tajima/LowT_samples_passing.txt"
+    ],
+    "outputs": [
+      "tajima/results/pairwise_snv_distance.tsv",
+      "tajima/figures/pairwise_snv_distance.*"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scikit-allel",
+      "matplotlib",
+      "seaborn"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Consensus differences among retained variant sites, not genome-wide ANI. Removed literal historical FST value from labels/output text.",
+    "module": "tajima",
+    "source_sha256": "56f1013b67f146ade8ddef0d0f5b145d53e3b0da6fd5d4fd46f39231debe6f61",
+    "release_sha256": "4f0dbb9a3345e311caa30e9841d6feee8808a271c4f46d7956f4758485a019f2"
+  },
+  {
+    "id": "tajima__parse_kofam_output",
+    "source_relative": "tajima/parse_kofam_output.py",
+    "released_relative": "analysis/tajima/parse_kofam_output.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "CLI --detail or --mapper KofamKOALA output"
+    ],
+    "outputs": [
+      "CLI --output prefix + _clean.tsv"
+    ],
+    "requirements": [
+      "pandas"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Annotation parsing companion; KOfam database, sequence inputs and outputs not bundled.",
+    "module": "tajima",
+    "source_sha256": "a9d63f5af25ed66c16cf10a52e724133d247b4b0e62e91d242f3c1eb92d0aff7",
+    "release_sha256": "1b667c142de5641fc1b19c39857087f95befd278379a9355f2d32d2eac5c057d"
+  },
+  {
+    "id": "tajima__10_fst_outlier_gene_analysis",
+    "source_relative": "tajima/10_fst_outlier_gene_analysis.py",
+    "released_relative": "analysis/tajima/10_fst_outlier_gene_analysis.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/results/fst_windowed.tsv",
+      "tajima/refs/LowT_representative.gff",
+      "tajima/LowT_kofam_clean.tsv",
+      "tajima/candidate_genes.tsv (optional)"
+    ],
+    "outputs": [
+      "tajima/results/fst_outlier_genes_top5.tsv",
+      "tajima/results/fst_outlier_genes_top1.tsv",
+      "tajima/figures/fst_manhattan.pdf",
+      "tajima/figures/fst_distribution.pdf",
+      "tajima/figures/fst_outlier_functions.pdf"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "matplotlib"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Empirical rank-based outliers; not a formal selection significance test. GFF sequence identifiers must match VCF reference identifiers.",
+    "module": "tajima",
+    "source_sha256": "5057194422692f85d03b8454955241451597a42df66a5e766afdffc341b426c3",
+    "release_sha256": "03f3ec6f184dc0b7b613d06a6b023ff90f516432ed2a66e86b8614a72f4dd43d"
+  },
+  {
+    "id": "tajima__figure_integrated_main",
+    "source_relative": "tajima/figure_integrated_main.py",
+    "released_relative": "analysis/tajima/figure_integrated_main.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "tajima/results/fst_windowed.tsv",
+      "tajima/results/popgen_windowed.tsv",
+      "tajima/results/fst_outlier_genes_top5.tsv",
+      "tajima/results/pairwise_snv_distance.tsv",
+      "tajima/sample_manifest.tsv",
+      "tajima/refs/LowT_representative.gff",
+      "env:THERMAL_FST_CLUSTERS",
+      "env:THERMAL_FST_GENE_LABELS"
+    ],
+    "outputs": [
+      "tajima/figures/figure_integrated_main.pdf",
+      "tajima/figures/figure_integrated_main.png"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "matplotlib",
+      "scipy"
+    ],
+    "status": "blocked_manual_selection_inputs",
+    "notes": "V4 Fig5a,b component source; final manuscript assembly/cropping not automated. Original study-selected cluster coordinates and gene labels externalized to required TSV inputs, not copied.",
+    "module": "tajima",
+    "source_sha256": "0d05aa224b3c669e7543b31ede26f84ecbf380fab460cf632da7ba505a7a1563",
+    "release_sha256": "cf4743cded5874e6712414231e71a2c2e2b392949f9ac93ee2e664fb3dcd9c9c"
+  },
+  {
+    "id": "tajima__workstation_amoabc_call_and_export",
+    "source_relative": "tajima/workstation_amoabc_call_and_export.sh",
+    "released_relative": "analysis/tajima/workstation_amoabc_call_and_export.sh",
+    "language": "Bash",
+    "working_directory": "tajima",
+    "inputs": [
+      "arg1:BAM directories",
+      "arg2:SPOT01 reference FASTA",
+      "arg3:sample_manifest.tsv",
+      "env:THERMAL_AMO_REGION"
+    ],
+    "outputs": [
+      "arg4 (default tajima/amoabc_workstation_out)/*"
+    ],
+    "requirements": [
+      "bash",
+      "bcftools",
+      "samtools",
+      "tabix"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Targeted read-based call set; manifest sample identifier is column1 and ecotype is column6. Region is a required external reference coordinate.",
+    "module": "tajima",
+    "source_sha256": "81ab09868a278b956ffaccc6aac359017d5ae8809f00fae4a9bc257d4bf9abdc",
+    "release_sha256": "fbfdb7ae73effcf46e9d7345ea5f74eaa44d9bde904a16bf632a35da75477497"
+  },
+  {
+    "id": "tajima__amoabc_site_differentiation",
+    "source_relative": "tajima/amoabc_site_differentiation.py",
+    "released_relative": "analysis/tajima/amoabc_site_differentiation.py",
+    "language": "Python",
+    "working_directory": "tajima",
+    "inputs": [
+      "CLI --vcf",
+      "CLI --groups",
+      "CLI --ref",
+      "CLI --gff",
+      "env:THERMAL_AMO_LOCI"
+    ],
+    "outputs": [
+      "CLI --outdir/*"
+    ],
+    "requirements": [
+      "Python stdlib"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Targeted AD-based differentiation. Reference loci externalized to required TSV; no study variant/allele data bundled.",
+    "module": "tajima",
+    "source_sha256": "df6be36d3c6b569fcb3eddedbf384f86c0834ce9c7596ac13196e8031c37ab42",
+    "release_sha256": "41fb0b1319ef7d1a3c6a966438dbc936c0bc0601c0fc464bf38c84e5bd0dfc92"
+  },
+  {
+    "id": "tajima__SCM1_reciprocal_FST__scripts__01_run_SCM1_mapping_calling",
+    "source_relative": "tajima/SCM1_reciprocal_FST/scripts/01_run_SCM1_mapping_calling.sh",
+    "released_relative": "analysis/tajima/SCM1_reciprocal_FST/scripts/01_run_SCM1_mapping_calling.sh",
+    "language": "Bash",
+    "working_directory": "tajima/SCM1_reciprocal_FST",
+    "inputs": [
+      "tajima/sample_manifest.tsv",
+      "tajima/refs/HighT_representative.fna",
+      "tajima/SCM1_reciprocal_FST/sample_groups_26.tsv",
+      "tajima/SCM1_reciprocal_FST/SCM1_amoABC_loci.tsv",
+      "manifest-linked read pairs"
+    ],
+    "outputs": [
+      "tajima/SCM1_reciprocal_FST/results/*",
+      "tajima/SCM1_reciprocal_FST/bam/*",
+      "tajima/SCM1_reciprocal_FST/vcf/*"
+    ],
+    "requirements": [
+      "bash",
+      "bowtie2",
+      "samtools",
+      "freebayes",
+      "bcftools",
+      "tabix",
+      "awk"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Reciprocal reference validation; same matched-sample list is required.",
+    "module": "tajima",
+    "source_sha256": "a229f87e71d3ce7ae3366e9a316fd75ea3836f283622026fdb191666c679bed1",
+    "release_sha256": "5fd8cef56423c00c25b3e0e5b492b39531861a2d5f3506633febf0579d6538a2"
+  },
+  {
+    "id": "tajima__SCM1_reciprocal_FST__scripts__02_analyze_SCM1_reciprocal",
+    "source_relative": "tajima/SCM1_reciprocal_FST/scripts/02_analyze_SCM1_reciprocal.py",
+    "released_relative": "analysis/tajima/SCM1_reciprocal_FST/scripts/02_analyze_SCM1_reciprocal.py",
+    "language": "Python",
+    "working_directory": "tajima/SCM1_reciprocal_FST",
+    "inputs": [
+      "tajima/SCM1_reciprocal_FST/sample_groups_26.tsv",
+      "tajima/SCM1_reciprocal_FST/reference_manifest.tsv",
+      "tajima/SCM1_reciprocal_FST/SCM1_amoABC_loci.tsv",
+      "tajima/SCM1_reciprocal_FST/results/SCM1_joint_26samples.vcf.gz",
+      "tajima/SCM1_reciprocal_FST/results/SCM1_mapping_QC.tsv",
+      "tajima/SCM1_reciprocal_FST/results/SCM1_amoABC_depth_by_sample.tsv"
+    ],
+    "outputs": [
+      "tajima/SCM1_reciprocal_FST/results/*",
+      "tajima/SCM1_reciprocal_FST/figures/*"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "matplotlib"
+    ],
+    "status": "ported_pending_data",
+    "notes": "Reciprocal validation uses per-sample allele frequencies and sample counts; distinct estimator from original GT-based SPOT01 scan.",
+    "module": "tajima",
+    "source_sha256": "f86d20e52e5fdedf5717f784c24fa7375ce0ea0c251776da23ff78d0e0822800",
+    "release_sha256": "185beed79386e95c18b4d523965ce98684bd8c93d02d3c369f2c949203242fa1"
+  },
+  {
+    "id": "1.phylogenetic_Final_ASR_clade_analysis",
+    "source_relative": "1.phylogenetic/Final_ASR_clade_analysis.R",
+    "released_relative": "analysis/1.phylogenetic/Final_ASR_clade_analysis.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "chiplot-tree.xlsx",
+      "gtdbtk.ar53.NP.treefile"
+    ],
+    "outputs": [
+      "Figure1_ASR_clades_final.pdf",
+      "Figure1_ASR_clades_final.png",
+      "Phylo_tree_ASR_clades.pdf"
+    ],
+    "requirements": [
+      "ape",
+      "dplyr",
+      "ggplot2",
+      "ggtree",
+      "openxlsx",
+      "patchwork",
+      "phytools",
+      "scales"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Uses supplied group assignments; it is not the original ASR clade-inference algorithm. Focal-clade signal is separate from all-108 signal.",
+    "module": "1.phylogenetic",
+    "source_sha256": "332e74c946df9bb312fa3e54b3487e165f82f68f7a83bd1428bdd597a0b7cb8e",
+    "release_sha256": "7827ecb0dc6be79629da4d0a1b26c261d4cec84d7a3d47e50a8ed174b97603d7"
+  },
+  {
+    "id": "1.phylogenetic_phylosignal_all108",
+    "source_relative": "1.phylogenetic/phylosignal_all108.R",
+    "released_relative": "analysis/1.phylogenetic/phylosignal_all108.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "ASR_clade_assignments_final.csv",
+      "gtdbtk.ar53.NP.treefile"
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "ape",
+      "phytools"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "1.phylogenetic",
+    "source_sha256": "cbe454c434eea49d06344cfe72af6291eafa23102bbfcfa9fc3a1fe61046b365",
+    "release_sha256": "6b37d68c21d09f56f25e10cf22920e34ca2c4606faa547ea569d96547f70da1c"
+  },
+  {
+    "id": "1.phylogenetic_Clade_OGT_Explained_Variance",
+    "source_relative": "1.phylogenetic/Clade_OGT_Explained_Variance.R",
+    "released_relative": "analysis/1.phylogenetic/Clade_OGT_Explained_Variance.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "ASR_clade_assignments_final.csv"
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "dplyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "1.phylogenetic",
+    "source_sha256": "9d708da549e2094936ac477c6381e511dc660dd74834eecd171d0eabc1f63a2e",
+    "release_sha256": "c96f0f5c48f4104e5d0b0b3fb523e8e95ddde36eda845c4ff1f27069512f3131"
+  },
+  {
+    "id": "1.phylogenetic_OGT_Bimodality_Analysis",
+    "source_relative": "1.phylogenetic/OGT_Bimodality_Analysis.R",
+    "released_relative": "analysis/1.phylogenetic/OGT_Bimodality_Analysis.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "ASR_clade_assignments_final.csv"
+    ],
+    "outputs": [
+      "OGT_Bimodality_Distribution.pdf",
+      "OGT_Bimodality_Distribution.png"
+    ],
+    "requirements": [
+      "diptest",
+      "dplyr",
+      "ggplot2",
+      "mclust"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "1.phylogenetic",
+    "source_sha256": "9e2bc543e3ddca7d717fb18a1ea49b209655af77febb661377edc61758491f51",
+    "release_sha256": "e3677a810682091b3af045ca6030abf99bbccc418fb663277a66c0e3461b4318"
+  },
+  {
+    "id": "1.phylogenetic_OGT_Validation_Analysis_FINAL_CORRECTED",
+    "source_relative": "1.phylogenetic/OGT_Validation_Analysis_FINAL_CORRECTED.R",
+    "released_relative": "analysis/1.phylogenetic/OGT_Validation_Analysis_FINAL_CORRECTED.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "../representative_NP.xlsx",
+      "cultured_strains_validation_FINAL.csv"
+    ],
+    "outputs": [
+      "FigS2_OGT_Distribution_FINAL.pdf",
+      "FigS2_OGT_Distribution_FINAL.png",
+      "FigS2_OGT_Validation_FINAL.pdf",
+      "FigS2_OGT_Validation_FINAL.png"
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "ggrepel",
+      "grid",
+      "gridExtra",
+      "readxl"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "1.phylogenetic",
+    "source_sha256": "b6d35ca1aaf4879012fa38a2c2d1bced1eadee4e44a6cfbd0bf31e165a4a5a45",
+    "release_sha256": "9e2ebd9ab01d1461d30d14bbabc6b8749d40268451933fab5099ce318cc53e70"
+  },
+  {
+    "id": "1.phylogenetic_Generate_FigS1_AB_combined",
+    "source_relative": "1.phylogenetic/Generate_FigS1_AB_combined.R",
+    "released_relative": "analysis/1.phylogenetic/Generate_FigS1_AB_combined.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "../representative_NP.xlsx",
+      "ASR/NP_nearshore_coastal_abundance.xlsx",
+      "chiplot-tree.xlsx",
+      "gtdbtk.ar53.NP.treefile"
+    ],
+    "outputs": [
+      "FigS1_ASR_combined.pdf"
+    ],
+    "requirements": [
+      "ape",
+      "grDevices",
+      "openxlsx",
+      "phytools"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Four-state OGT-median x abundance-breadth reconstruction. Not an exact substitute for V4 fixed-27.5C binary ASR; source reconciliation is required.",
+    "module": "1.phylogenetic",
+    "source_sha256": "6c4f296046916222546f9ec2502f5b3e1f458f8b81014374135b80d33a7bc0eb",
+    "release_sha256": "949825ab8ad5bfcf63082c6c8a69ed1cffe53f3dc5c28474057d7bd120a5522c"
+  },
+  {
+    "id": "1.phylogenetic_Figure1_With_ggtree",
+    "source_relative": "1.phylogenetic/Figure1_With_ggtree.R",
+    "released_relative": "analysis/1.phylogenetic/Figure1_With_ggtree.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/1.phylogenetic",
+    "inputs": [
+      "MCMCtree_FigTree.tre",
+      "MCMCtree_cleaned.tre",
+      "TIME2.xlsx",
+      "chiplot-tree.xlsx"
+    ],
+    "outputs": [
+      "Figure1_ggtree_double.pdf",
+      "Figure1_ggtree_double.png",
+      "Figure1_ggtree_single.pdf",
+      "Figure1_ggtree_single.png"
+    ],
+    "requirements": [
+      "BiocManager",
+      "ape",
+      "dplyr",
+      "ggplot2",
+      "ggtree",
+      "openxlsx",
+      "patchwork"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Plots a supplied dated tree; no MCMCtree inference, priors or calibration recipe recovered. Historical plot layout is not guaranteed to match V4 Fig6a.",
+    "module": "1.phylogenetic",
+    "source_sha256": "c49e7c03949a937489f305158ef6357c8442a914ea344e110613ae333f3f3d41",
+    "release_sha256": "6d71143f834f087361c61109c8bdfac4ff38e11ea03d64902158a40b1df8298b"
+  },
+  {
+    "id": "genome_character_two_group_boxplot-7",
+    "source_relative": "genome_character/two_group/boxplot-7.R",
+    "released_relative": "analysis/genome_character/two_group/boxplot-7.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/genome_character/two_group",
+    "inputs": [
+      "genome_character/two_group/two_group.xlsx"
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "patchwork",
+      "readxl"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained. Added explicit failure when no usable growth-rate/doubling-time input is present.",
+    "module": "genome_character",
+    "source_sha256": "9988d157e69aae46d2c1088e1df797f7d01104e2c03fed9bf1d5752d9644dd65",
+    "release_sha256": "0e444428abd77c1b4a31d55f62a1cf87762c1eb7fc0a785a6a31f9b0dfba6bca"
+  },
+  {
+    "id": "genome_character_two_group_combined_barplots",
+    "source_relative": "genome_character/two_group/combined_barplots.R",
+    "released_relative": "analysis/genome_character/two_group/combined_barplots.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/genome_character/two_group",
+    "inputs": [
+      "merops_blast",
+      "my_mer_families.txt",
+      "overview.txt",
+      "tcdb_blast",
+      "two_group.xlsx"
+    ],
+    "outputs": [
+      "combined_family_barplots.pdf",
+      "combined_family_barplots.png"
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "patchwork",
+      "readxl",
+      "stringr",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "genome_character",
+    "source_sha256": "e2c5ec1b1e15dcf08a59616006a48f830514283f4ac1e267e720f70a47281a08",
+    "release_sha256": "8ea50b695ccc706083b9ccca6f8b75db3627b6cfced46c91afdd4fe8239cf466"
+  },
+  {
+    "id": "genome_character_PCA-AA_AA_PCA_by_group_final_contrib",
+    "source_relative": "genome_character/PCA-AA/AA_PCA_by_group_final_contrib.R",
+    "released_relative": "analysis/genome_character/PCA-AA/AA_PCA_by_group_final_contrib.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/genome_character/PCA-AA",
+    "inputs": [
+      "${THERMAL_AA_USAGE}: amino-acid composition TSV",
+      "${THERMAL_AA_METADATA}: group metadata XLSX"
+    ],
+    "outputs": [
+      "AA_PCA_biplot_contrib.pdf",
+      "AA_PCA_biplot_contrib.png"
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "readr",
+      "readxl",
+      "stringr",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "genome_character",
+    "source_sha256": "c704299fcb61e7378df7f43a947ac3538bf2aa63a43c44683b43083d1a0b9c35",
+    "release_sha256": "29569a8d8d8ef6f17ea1d61d1ec5429c816a9b8f664e2ac8fb2662bd4dcc68cc"
+  },
+  {
+    "id": "genome_character_summarize_functional_counts_all_np",
+    "source_relative": "genome_character/summarize_functional_counts_all_np.py",
+    "released_relative": "analysis/genome_character/summarize_functional_counts_all_np.py",
+    "language": "python",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/genome_character",
+    "inputs": [
+      "representative_NP_Supplementary.xlsx",
+      "genome_character/overview.txt",
+      "genome_character/tcdb_blast",
+      "genome_character/merops_blast"
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "pandas",
+      "openpyxl"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "genome_character",
+    "source_sha256": "eb4d435e14f96f3ffadb5d72c74160eb7351bb912c9f97cdfd1e6815407698dc",
+    "release_sha256": "56102253b5638ce575ad4a66ede460aaa0491ee412db46b98165bccdc056fe65"
+  },
+  {
+    "id": "genome_character_summarize_cog",
+    "source_relative": "genome_character/summarize_cog.py",
+    "released_relative": "analysis/genome_character/summarize_cog.py",
+    "language": "python",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/genome_character",
+    "inputs": [
+      "Command-line directory with *.emapper.annotations"
+    ],
+    "outputs": [
+      "genome_character/cog_summary_for_YAS.tsv",
+      "genome_character/yas_s_strategy_indicators.tsv"
+    ],
+    "requirements": [],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Preserves annotation counting; removed legacy downstream z-score advice which does not match V4 mean scaling. Final eight-trait YAS plot source unavailable.",
+    "module": "genome_character",
+    "source_sha256": "5c87da529671f053f22bfa0f32c6139835f3f5c110db78782e545c621bfe0b29",
+    "release_sha256": "13fe94d6d13596382a9019eed16d70c41a216d866fecb8e1bf68729073991e2d"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step1_AOA_log10",
+    "source_relative": "SSP585/NP_lowT/R/step1_AOA_log10.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step1_AOA_log10.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/NP_lowT_coastal_abundance.xlsx",
+      "SSP585/NP_lowT/genome_lon_lat.xlsx"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/NP_lowT_sample_abundance.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readxl",
+      "stringr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "8df8a750dd601b5dfdc03a4c78b0ef14fa58de0bb4deb093bb212d2a13a4db19",
+    "release_sha256": "de7b93850039c6d99e95534254b78bd0959adcad490409fefca1f2dd396413af"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step2_bio_oracle",
+    "source_relative": "SSP585/NP_lowT/R/step2_bio_oracle.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step2_bio_oracle.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/NP_lowT_sample_abundance.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/biooracle_nc/*.nc"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/AOA_points_with_BioORACLE.tsv",
+      "SSP585/NP_lowT/AOA_points_with_BioORACLE_nearshore.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readr",
+      "stringr",
+      "terra",
+      "tibble"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "ed21ea9cedc32a1dc80dfd3b278c3d619916f33c87ebf6c33b59d24ec938c51e",
+    "release_sha256": "cb2a2213e875bcb3bcec9a1c67a41116614510461d433ee2058a88ed16cfa757"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step3_pre_model_table",
+    "source_relative": "SSP585/NP_lowT/R/step3_pre_model_table.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step3_pre_model_table.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/AOA_points_with_BioORACLE_nearshore_filtered.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/AOA_RF_V0_outputs/AOA_model_table_V0_final.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readr",
+      "stringr",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "56036dfa2e0aa96f3ec722c07c771b71c7fddf0a82a4ef3d3b152b6616f88ba8",
+    "release_sha256": "efc2eb198a894e18f2c385a0a5133e421d29208accf64b6a3ac29212c7a96ff4"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step4_AOA_RF_pipeline_V0",
+    "source_relative": "SSP585/NP_lowT/R/step4_AOA_RF_pipeline_V0.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step4_AOA_RF_pipeline_V0.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/AOA_RF_V0_outputs/AOA_model_table_V0_final.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/AOA_RF_V0_outputs/{RFE_result.rds,RF_tuned_model.rds,RF_importance.tsv,RF_ensemble_predictions.tsv,PDP_*.png}"
+    ],
+    "requirements": [
+      "car",
+      "caret",
+      "dplyr",
+      "ggplot2",
+      "pdp",
+      "ranger",
+      "readr",
+      "tibble",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "2748db91ac831c211e805decdf15a7ca405467d24fe7a1f0758af566cb173733",
+    "release_sha256": "7c72884e91e7d7a4d607cc277d1a8f8ca769e923992186af2955307e1288df6d"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step5_AOA_future_cov_SSP_new",
+    "source_relative": "SSP585/NP_lowT/R/step5_AOA_future_cov_SSP_new.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step5_AOA_future_cov_SSP_new.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/NP_lowT_sample_abundance.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/SSP585/2080_2100_timmean/*.nc"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/AOA_future_cov_outputs/AOA_future_cov_SSP585_2080-2100_depthsurf.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readr",
+      "stringr",
+      "terra",
+      "tibble"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "b62e36421a9cf7c26ab87cc6b9bdc123f537e382e01b3996524a7455610a558d",
+    "release_sha256": "90e40df4465ace0314a86baae367b4b1c987c38d84a0dee0f4fb446e0b808bc2"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step6_AOA_future_projection_new",
+    "source_relative": "SSP585/NP_lowT/R/step6_AOA_future_projection_new.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step6_AOA_future_projection_new.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/AOA_points_with_BioORACLE.tsv",
+      "SSP585/NP_lowT/AOA_future_cov_outputs/AOA_future_cov_SSP585_2080-2100_depthsurf.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/AOA_future_projection_outputs/AOA_pred_*_KEEPCHL_SSP585_2080-2100.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "ranger",
+      "readr",
+      "stringr",
+      "tibble",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "382e406e943aeb954de6fb41232883af1dbb82d0b5f6e039fdef7626feb9f3c6",
+    "release_sha256": "f8aaee44f7026d107dd377ae0758b08f59aa27524e6d4751947d1d0adafd9459"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step7_make_GLOBAL_future_grid_from_nc",
+    "source_relative": "SSP585/NP_lowT/R/step7_make_GLOBAL_future_grid_from_nc.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step7_make_GLOBAL_future_grid_from_nc.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "${THERMAL_BIOORACLE_ROOT}/SSP585/2080_2100_timmean/*.nc"
+    ],
+    "outputs": [
+      "${THERMAL_BIOORACLE_ROOT}/SSP585/2080_2100_timmean/GLOBAL_grid_future_SSP585_2080-2100_depthsurf.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readr",
+      "stringr",
+      "terra",
+      "tibble"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "5c4841cda2b14bd3da0aacb3a7791fc2c63e25fcb604a5c0606a15efacf0f644",
+    "release_sha256": "0d5fd44c8f976ff33dbe8bd79b612926df659da88a20e4f9dd56a5118ddf6c8b"
+  },
+  {
+    "id": "SSP585_NP_lowT_R_step8_GLOBAL_nearshore_projection_and_maps",
+    "source_relative": "SSP585/NP_lowT/R/step8_GLOBAL_nearshore_projection_and_maps.R",
+    "released_relative": "analysis/SSP585/NP_lowT/R/step8_GLOBAL_nearshore_projection_and_maps.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_lowT",
+    "inputs": [
+      "SSP585/NP_lowT/AOA_points_with_BioORACLE_nearshore_filtered.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/biooracle_nc/GLOBAL_grid_baseline_depthsurf_with_dist_km.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/biooracle_nc/terrain_characteristics.nc",
+      "${THERMAL_BIOORACLE_ROOT}/SSP585/2080_2100_timmean/GLOBAL_grid_future_SSP585_2080-2100_depthsurf.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_lowT/AOA_future_projection_outputs/GLOBAL_NEARSHORE_MAPS/GLOBAL_nearshore_pred_{current,future,delta}_nearshore200km_KEEPCHL_SSP585_2080-2100.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "ncdf4",
+      "ranger",
+      "readr",
+      "scales",
+      "stringr",
+      "terra",
+      "tibble",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "8a5afd81f157c806d4a078625526daebf11b28cdbeae1490314b476ffd5f6b4e",
+    "release_sha256": "3d2b93ba73b3d7cc01ad980a1424952e8c7d6c8506073b124034f3c53555c3c0"
+  },
+  {
+    "id": "unavailable_step1_AOA_log10",
+    "source_relative": "SSP585/NP_highT/R/step1_AOA_log10.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Original file is empty; no implementation released.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "SSP585_NP_highT_R_step2_bio_oracle",
+    "source_relative": "SSP585/NP_highT/R/step2_bio_oracle.R",
+    "released_relative": "analysis/SSP585/NP_highT/R/step2_bio_oracle.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_highT",
+    "inputs": [
+      "SSP585/NP_highT/NP_highT_sample_abundance.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/biooracle_nc/*.nc"
+    ],
+    "outputs": [
+      "SSP585/NP_highT/AOA_points_with_BioORACLE.tsv",
+      "SSP585/NP_highT/AOA_points_with_BioORACLE_nearshore.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readr",
+      "stringr",
+      "terra",
+      "tibble"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "c9f884fa02bf7326972d1a05c48cbfc503c6578a5abcc611709f4eedeffa8645",
+    "release_sha256": "054013dc6df3c53c343fade9920c9f449abc574c2ab4969961c27b5a5af4eb5d"
+  },
+  {
+    "id": "SSP585_NP_highT_R_step3_pre_model_table",
+    "source_relative": "SSP585/NP_highT/R/step3_pre_model_table.R",
+    "released_relative": "analysis/SSP585/NP_highT/R/step3_pre_model_table.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_highT",
+    "inputs": [
+      "SSP585/NP_highT/AOA_points_with_BioORACLE_nearshore_filtered.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_highT/AOA_RF_V0_outputs/AOA_model_table_V0_final.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "readr",
+      "stringr",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "b3b2123adefe70599f112dadc8069f2cb169b07e599dc3a555a9d861c828e25d",
+    "release_sha256": "2098f343be7a82f000d44f512caa7515d57652aaad1cbef3e5f30c569b8affb1"
+  },
+  {
+    "id": "SSP585_NP_highT_R_step4_AOA_RF_pipeline_V0",
+    "source_relative": "SSP585/NP_highT/R/step4_AOA_RF_pipeline_V0.R",
+    "released_relative": "analysis/SSP585/NP_highT/R/step4_AOA_RF_pipeline_V0.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_highT",
+    "inputs": [
+      "SSP585/NP_highT/AOA_RF_V0_outputs/AOA_model_table_V0_final.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_highT/AOA_RF_V0_outputs/{RFE_result.rds,RF_tuned_model.rds,RF_importance.tsv,RF_ensemble_predictions.tsv,PDP_*.png}"
+    ],
+    "requirements": [
+      "car",
+      "caret",
+      "dplyr",
+      "ggplot2",
+      "pdp",
+      "ranger",
+      "readr",
+      "tibble",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "91ff92b7e31b015212ed425482bb237b5911d77afb94068be73ed2419a4a6112",
+    "release_sha256": "1c605d02ba1046c875b7f4aa05336da5b7d75286ea0c2c290545aa17d9dc76ae"
+  },
+  {
+    "id": "unavailable_step5_AOA_future_cov_SSP_new",
+    "source_relative": "SSP585/NP_highT/R/step5_AOA_future_cov_SSP_new.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Original file is empty; no implementation released.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_step6_AOA_future_projection_new",
+    "source_relative": "SSP585/NP_highT/R/step6_AOA_future_projection_new.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Original file is empty; no implementation released.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_step7_make_GLOBAL_future_grid_from_nc--no",
+    "source_relative": "SSP585/NP_highT/R/step7_make_GLOBAL_future_grid_from_nc--no.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Original file is empty; no implementation released.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "SSP585_NP_highT_R_step8_GLOBAL_nearshore_projection_and_maps",
+    "source_relative": "SSP585/NP_highT/R/step8_GLOBAL_nearshore_projection_and_maps.R",
+    "released_relative": "analysis/SSP585/NP_highT/R/step8_GLOBAL_nearshore_projection_and_maps.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585/NP_highT",
+    "inputs": [
+      "SSP585/NP_highT/AOA_points_with_BioORACLE_nearshore_filtered.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/biooracle_nc/GLOBAL_grid_baseline_depthsurf_with_dist_km.tsv",
+      "${THERMAL_BIOORACLE_ROOT}/biooracle_nc/terrain_characteristics.nc",
+      "${THERMAL_BIOORACLE_ROOT}/SSP585/2080_2100_timmean/GLOBAL_grid_future_SSP585_2080-2100_depthsurf.tsv"
+    ],
+    "outputs": [
+      "SSP585/NP_highT/AOA_future_projection_outputs/GLOBAL_NEARSHORE_MAPS/GLOBAL_nearshore_pred_{current,future,delta}_nearshore200km_KEEPCHL_SSP585_2080-2100.tsv"
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "ncdf4",
+      "ranger",
+      "readr",
+      "scales",
+      "stringr",
+      "terra",
+      "tibble",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "0387e886ed1203505862e451d0dab4ab66d5766f880ee47e3eb90c0a1dfe087f",
+    "release_sha256": "632ccfab91422b12346799d38d0f1a33aca0091438c3f5447afbb984d2f0421b"
+  },
+  {
+    "id": "SSP585_step0_add_nearshore_filter_to_training",
+    "source_relative": "SSP585/step0_add_nearshore_filter_to_training.R",
+    "released_relative": "analysis/SSP585/step0_add_nearshore_filter_to_training.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "data.table",
+      "dplyr",
+      "ncdf4",
+      "readr",
+      "terra"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "10ebb2340602b00b394130debd23bae7d6f491d675335dbed35ca936adbb44c2",
+    "release_sha256": "2e8b0a0d70214d54b22e61e034f5a0246dec95a4341fb7d5bc44749053922cbb"
+  },
+  {
+    "id": "SSP585_FIG",
+    "source_relative": "SSP585/FIG.R",
+    "released_relative": "analysis/SSP585/FIG.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "patchwork",
+      "readr",
+      "rnaturalearth",
+      "rnaturalearthdata",
+      "scales",
+      "sf"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "fa771f6ae001b20d553e1de56ad789fd9585c90b0cb58ead990dae176069dbfa",
+    "release_sha256": "a4673f3aaf87a9d0ad9de652d3191bfe588ba79bebfb3d4e8dbe7857a807c6d9"
+  },
+  {
+    "id": "SSP585_FIGS_V4",
+    "source_relative": "SSP585/FIGS_V4.R",
+    "released_relative": "analysis/SSP585/FIGS_V4.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "patchwork",
+      "readr",
+      "scales",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Adds coordinate/order/duplicate checks before the original row-wise assembly; does not change quadrant or delta thresholds.",
+    "module": "SSP585",
+    "source_sha256": "ab29a6ac311799ac703ef8529fed291eb7ba99c2a0694a730eda3869de47416f",
+    "release_sha256": "6e078a2fb98f818be69714bad684f6102a0f7ffd70b349d773ba6d02d73ac5a3"
+  },
+  {
+    "id": "SSP585_plot_Fig8e_area_weighted_latitudinal_contribution",
+    "source_relative": "SSP585/plot_Fig8e_area_weighted_latitudinal_contribution.R",
+    "released_relative": "analysis/SSP585/plot_Fig8e_area_weighted_latitudinal_contribution.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "4b381f00006701c4b12a6d67cbafcc119519e89ebba0c91cb4a98bb31d3bd880",
+    "release_sha256": "cd08c8c1c1f210ba124c781dcefa50c994cf491750c239377bf265089b6bc1c8"
+  },
+  {
+    "id": "SSP585_summarize_LowT_HighT_direction_pairs",
+    "source_relative": "SSP585/summarize_LowT_HighT_direction_pairs.py",
+    "released_relative": "analysis/SSP585/summarize_LowT_HighT_direction_pairs.py",
+    "language": "python",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "numpy",
+      "pandas"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "177ccbd5530c12e0ab18dd0ad48c5cd20c216dfcec4e092a48fa8c41c06dc0d3",
+    "release_sha256": "a01844b33d6638c0d16cdf951d9057c5a5810744e5ef022dd4867e43a67b1147"
+  },
+  {
+    "id": "SSP585_plot_LowT_HighT_revision2",
+    "source_relative": "SSP585/plot_LowT_HighT_revision2.R",
+    "released_relative": "analysis/SSP585/plot_LowT_HighT_revision2.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "60c5db4621c36403eeecba0aa94ebff1bd88987273cbae762ea8c1a9de30d09a",
+    "release_sha256": "ed30fe9ec9f78dc505b2831449a2f712947bbc519d9106b317386b0cbf4874a7"
+  },
+  {
+    "id": "SSP585_plot_LowT_HighT_revision2_supplement",
+    "source_relative": "SSP585/plot_LowT_HighT_revision2_supplement.R",
+    "released_relative": "analysis/SSP585/plot_LowT_HighT_revision2_supplement.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "e96b7c0ca4bf8abf11e541d373f7244be340c4261b50466bf99b252ffc72f53c",
+    "release_sha256": "e650f0d891b4a53d6ac8c29f799f3c889ee31a818b55a41de8f3440afb0e277c"
+  },
+  {
+    "id": "SSP585_analyze_lowT_environmental_context",
+    "source_relative": "SSP585/analyze_lowT_environmental_context.py",
+    "released_relative": "analysis/SSP585/analyze_lowT_environmental_context.py",
+    "language": "python",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "pandas"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "7a61c8d9716a78f8c4788ab6b85783c2786a7b2215d59258c767e6a9f7c32f8c",
+    "release_sha256": "7e264785c926f635bc98d5c30edaa59ec6242948285018590d277445c4d4fda3"
+  },
+  {
+    "id": "SSP585_plot_LowT_environmental_context_supplement",
+    "source_relative": "SSP585/plot_LowT_environmental_context_supplement.R",
+    "released_relative": "analysis/SSP585/plot_LowT_environmental_context_supplement.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "4de0b99629d0993e06e33fd8f8969e0b4929694a2fa190b06b4074e8080bf6c6",
+    "release_sha256": "7f86929c816db5ca51d5696a2e1da9d420056efcd0f56165b8f8ad9698dd3bd9"
+  },
+  {
+    "id": "SSP585_niche_analysis_v2",
+    "source_relative": "SSP585/niche_analysis_v2.R",
+    "released_relative": "analysis/SSP585/niche_analysis_v2.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "patchwork",
+      "readr",
+      "tidyr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "d71005165d06c6a301fa0fe0a5be8a6bbfd04c174e26c5054ea218659ab1b2a6",
+    "release_sha256": "37977d9be081b5feed27a35cbde54f4c81cc7e3a85a13172702f1d76d5143335"
+  },
+  {
+    "id": "SSP585_niche_analysis_supplementary",
+    "source_relative": "SSP585/niche_analysis_supplementary.R",
+    "released_relative": "analysis/SSP585/niche_analysis_supplementary.R",
+    "language": "R",
+    "working_directory": "${THERMAL_PROJECT_ROOT}/SSP585",
+    "inputs": [
+      "See module README; inputs are named in script configuration."
+    ],
+    "outputs": [
+      "See module README and script output paths."
+    ],
+    "requirements": [
+      "dplyr",
+      "ggplot2",
+      "patchwork",
+      "readr"
+    ],
+    "status": "syntax_checked_missing_root_fails_external_inputs_required",
+    "notes": "Path-only port; original statistical choices retained.",
+    "module": "SSP585",
+    "source_sha256": "352ebde0c68660ea6a9dcd7d4948fd30a1a76bdd89da1003aa354dd5d4607a15",
+    "release_sha256": "3d739857c8a3fd7d1390f8b7620d1ebbf478569acd50629ed59f334878475ac0"
+  },
+  {
+    "id": "unavailable_PDP_temperature_with_ICEband_low_vs_high",
+    "source_relative": "SSP585/compare/PDP_temperature_with_ICEband_low_vs_high.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Original file is empty; no implementation released.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_RF_improtamce_polish",
+    "source_relative": "SSP585/compare/RF_improtamce_polish.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Original file is empty; no implementation released.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_FIG",
+    "source_relative": "SSP585/compare/FIG.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_Figure_main_4panels_current_delta_blackOutline_unified",
+    "source_relative": "SSP585/compare/Figure_main_4panels_current_delta_blackOutline_unified.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_Figure_main_6panels",
+    "source_relative": "SSP585/compare/Figure_main_6panels.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_Figure_main_6panels_245",
+    "source_relative": "SSP585/compare/Figure_main_6panels_245.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_step2-driver-rf-importance",
+    "source_relative": "SSP585/compare/step2-driver-rf-importance.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_step3-response-pdb",
+    "source_relative": "SSP585/compare/step3-response-pdb.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "unavailable_SSP585_compare_Δ_Future-Current_maps_for_low-T_and_high-T",
+    "source_relative": "SSP585/compare/Δ_Future-Current_maps_for_low-T_and_high-T.R",
+    "released_relative": null,
+    "language": "R",
+    "working_directory": null,
+    "inputs": [],
+    "outputs": [],
+    "requirements": [],
+    "status": "unavailable_zero_byte_source",
+    "notes": "Empty original; not released. Exact final response/ALE/importance panel source is unavailable.",
+    "module": "SSP585",
+    "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "release_sha256": null
+  },
+  {
+    "id": "selection_01",
+    "source_relative": "selection_analysis/scripts/01_filter_roary_shared_orthologs.py",
+    "released_relative": "analysis/selection_analysis/scripts/01_filter_roary_shared_orthologs.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "e9d0763eeda14b7791e227d13a6bd42b28a5a41c709806208e30baad5445c0b4",
+    "release_sha256": "e9d0763eeda14b7791e227d13a6bd42b28a5a41c709806208e30baad5445c0b4"
+  },
+  {
+    "id": "selection_05",
+    "source_relative": "selection_analysis/scripts/05_extract_softcore_sequences.py",
+    "released_relative": "analysis/selection_analysis/scripts/05_extract_softcore_sequences.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "7a9cf12f742404f45cf0e59426fe3e2666d7554aa0b2607118d725b36875a93e",
+    "release_sha256": "7a9cf12f742404f45cf0e59426fe3e2666d7554aa0b2607118d725b36875a93e"
+  },
+  {
+    "id": "selection_06a",
+    "source_relative": "selection_analysis/scripts/06a_prepare_codon_alignments_wsl.sh",
+    "released_relative": "analysis/selection_analysis/scripts/06a_prepare_codon_alignments_wsl.sh",
+    "language": ".sh",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "ff31b3ab89538fb6bce26d1a45f4840d3c21b87fc41df1d1c31078144a538035",
+    "release_sha256": "ff31b3ab89538fb6bce26d1a45f4840d3c21b87fc41df1d1c31078144a538035"
+  },
+  {
+    "id": "selection_06b",
+    "source_relative": "selection_analysis/scripts/06b_run_iqtree_workstation.sh",
+    "released_relative": "analysis/selection_analysis/scripts/06b_run_iqtree_workstation.sh",
+    "language": ".sh",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "034fb62490e571caff0d97b6ce169ee4dfe3b233ef1af68d3c1a5b7002469f2c",
+    "release_sha256": "bfcc8697621cadcb49c105c16a10031e8396f60f760e1f201d3f7b00cea579a3"
+  },
+  {
+    "id": "selection_06",
+    "source_relative": "selection_analysis/scripts/06_prepare_family_species_trees.py",
+    "released_relative": "analysis/selection_analysis/scripts/06_prepare_family_species_trees.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "ff94ca42ac921e55a7f49c5dada799290e0a2475a6dd1c144f5dc7423da289c1",
+    "release_sha256": "ff94ca42ac921e55a7f49c5dada799290e0a2475a6dd1c144f5dc7423da289c1"
+  },
+  {
+    "id": "selection_07",
+    "source_relative": "selection_analysis/scripts/07_prepare_codeml_jobs.py",
+    "released_relative": "analysis/selection_analysis/scripts/07_prepare_codeml_jobs.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "0f71daf05d3c609aedb394fd72e08ce110419589cc6257af95bd02028a779c64",
+    "release_sha256": "0f71daf05d3c609aedb394fd72e08ce110419589cc6257af95bd02028a779c64"
+  },
+  {
+    "id": "selection_08",
+    "source_relative": "selection_analysis/scripts/08_run_codeml_jobs.sh",
+    "released_relative": "analysis/selection_analysis/scripts/08_run_codeml_jobs.sh",
+    "language": ".sh",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "6ad181dbcaa7a5f40990a2835a1597639e74cc9c969fc169277cbcac203a8c99",
+    "release_sha256": "e705bb92938e21dfea65dce7fed821fc5c205447e401b634fb2af1a1021b403d"
+  },
+  {
+    "id": "selection_09",
+    "source_relative": "selection_analysis/scripts/09_summarize_codeml.py",
+    "released_relative": "analysis/selection_analysis/scripts/09_summarize_codeml.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "74e8c079bfbad0a564e3b21b29b2317b4890cbefe16315e135079d3867aef99b",
+    "release_sha256": "74e8c079bfbad0a564e3b21b29b2317b4890cbefe16315e135079d3867aef99b"
+  },
+  {
+    "id": "selection_12",
+    "source_relative": "selection_analysis/scripts/12_audit_codeml_convergence.py",
+    "released_relative": "analysis/selection_analysis/scripts/12_audit_codeml_convergence.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "0c5b1efe34cb448daad314a139b7d5611a9876be8f5690c13629abb03dda1eb1",
+    "release_sha256": "0c5b1efe34cb448daad314a139b7d5611a9876be8f5690c13629abb03dda1eb1"
+  },
+  {
+    "id": "selection_35",
+    "source_relative": "selection_analysis/scripts/35_prepare_direct_hight_lowt_omega.py",
+    "released_relative": "analysis/selection_analysis/scripts/35_prepare_direct_hight_lowt_omega.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "6c2b2807297795185b95324f3131d95b613fc7b68e7f444df5a484032ca63a8e",
+    "release_sha256": "6c2b2807297795185b95324f3131d95b613fc7b68e7f444df5a484032ca63a8e"
+  },
+  {
+    "id": "selection_36",
+    "source_relative": "selection_analysis/scripts/36_run_direct_hight_lowt_omega.sh",
+    "released_relative": "analysis/selection_analysis/scripts/36_run_direct_hight_lowt_omega.sh",
+    "language": ".sh",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "546a8cdf54aedf4aa3f8fe7846c937e5772936a2cd4627c5d40289284f8d6fa8",
+    "release_sha256": "7ad094c79b6922f2334af70806b068b199d41ccfef3d6fd4c15c8abfd2dec29c"
+  },
+  {
+    "id": "selection_37",
+    "source_relative": "selection_analysis/scripts/37_summarize_direct_hight_lowt_omega.py",
+    "released_relative": "analysis/selection_analysis/scripts/37_summarize_direct_hight_lowt_omega.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "49647ccb0953862c39c2614f7f59f8b7ea7779c6b97613144cb3fbec038304fc",
+    "release_sha256": "49647ccb0953862c39c2614f7f59f8b7ea7779c6b97613144cb3fbec038304fc"
+  },
+  {
+    "id": "selection_38",
+    "source_relative": "selection_analysis/scripts/38_audit_direct_hight_lowt_omega.py",
+    "released_relative": "analysis/selection_analysis/scripts/38_audit_direct_hight_lowt_omega.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "89cb7830749211d28dabf5c9d732dd9dab00cc3c79d8fa9e2334520901330d97",
+    "release_sha256": "89cb7830749211d28dabf5c9d732dd9dab00cc3c79d8fa9e2334520901330d97"
+  },
+  {
+    "id": "selection_40",
+    "source_relative": "selection_analysis/scripts/40_prepare_iscU2_targeted_multistart.py",
+    "released_relative": "analysis/selection_analysis/scripts/40_prepare_iscU2_targeted_multistart.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "10d29cf4e900a72de8b1ce574acf00c6042773ac0b20072e7cf430992544825d",
+    "release_sha256": "10d29cf4e900a72de8b1ce574acf00c6042773ac0b20072e7cf430992544825d"
+  },
+  {
+    "id": "selection_41",
+    "source_relative": "selection_analysis/scripts/41_run_iscU2_targeted_multistart.sh",
+    "released_relative": "analysis/selection_analysis/scripts/41_run_iscU2_targeted_multistart.sh",
+    "language": ".sh",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "6957be0ef7ef6258daec4c2c48c164ea124a83b33babf9f1dd437742a972ffbc",
+    "release_sha256": "9c8e7b5326ded7a7a21d1e8d608c111ffdbc1d80850307afef2c35c85078933b"
+  },
+  {
+    "id": "selection_42",
+    "source_relative": "selection_analysis/scripts/42_summarize_iscU2_targeted_multistart.py",
+    "released_relative": "analysis/selection_analysis/scripts/42_summarize_iscU2_targeted_multistart.py",
+    "language": ".py",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "a5d6538a9fefa5ca28bfd19f1a2d8c8e812b736e4b97fc0eaa163600e7a0e0c1",
+    "release_sha256": "a5d6538a9fefa5ca28bfd19f1a2d8c8e812b736e4b97fc0eaa163600e7a0e0c1"
+  },
+  {
+    "id": "selection_45",
+    "source_relative": "selection_analysis/scripts/45_plot_supplementary_direct_omega_R.R",
+    "released_relative": "analysis/selection_analysis/scripts/45_plot_supplementary_direct_omega_R.R",
+    "language": ".R",
+    "working_directory": "user-supplied workspace; CLI paths required",
+    "inputs": [
+      "See --help / module README; real sequences and fitted outputs are not bundled"
+    ],
+    "outputs": [
+      "stage-specific selection_analysis results"
+    ],
+    "requirements": [
+      "Python 3.11+",
+      "R",
+      "codeml",
+      "MAFFT",
+      "PAL2NAL",
+      "trimAl",
+      "IQ-TREE (alignment stages)"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Scientific calculation retained; full historic fits not rerun.",
+    "module": "selection_analysis",
+    "source_sha256": "a94725fa65689d9affb99dc08052510a31c79962228d84837639caf3377c658c",
+    "release_sha256": "cd1e6cba4297c1514b920ff3947d3ff9da7cfd873d7c42b413c4c3e56d653e15"
+  },
+  {
+    "id": "selection_10",
+    "source_relative": "selection_analysis/scripts/10_analyze_codeml_summary.py",
+    "released_relative": "analysis/selection_analysis/scripts/10_analyze_codeml_summary.py",
+    "language": ".py",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "4e691064b3d5c493b7f235ecd8800469582d051282f2fd137878148cc5717937",
+    "release_sha256": "4e691064b3d5c493b7f235ecd8800469582d051282f2fd137878148cc5717937"
+  },
+  {
+    "id": "selection_16",
+    "source_relative": "selection_analysis/scripts/16_analyze_plot_dnds_history.py",
+    "released_relative": "analysis/selection_analysis/scripts/16_analyze_plot_dnds_history.py",
+    "language": ".py",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "4d7f23e658d5220775c4cffc1120356cb8781f8c9d7e9cf6a93572d69dcf79be",
+    "release_sha256": "4db0759e92f9a7aa0cba253da03364a66a5b40207f00d9eefc0d3bb855e9f74c"
+  },
+  {
+    "id": "selection_28",
+    "source_relative": "selection_analysis/scripts/28_plot_panelc_ranked_ratio_only.R",
+    "released_relative": "analysis/selection_analysis/scripts/28_plot_panelc_ranked_ratio_only.R",
+    "language": ".R",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "bd3f4e137c2a1493bfb2eddf56da717f9cef9a7e2f22548af49e05eab647abc0",
+    "release_sha256": "721e9d1a3dd7e95e611accc94da7c35f58505d96ff8a777233e6ac40e94f7374"
+  },
+  {
+    "id": "selection_29",
+    "source_relative": "selection_analysis/scripts/29_prepare_figure7c_kegg_submission.R",
+    "released_relative": "analysis/selection_analysis/scripts/29_prepare_figure7c_kegg_submission.R",
+    "language": ".R",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "7d8a292907defa3f3546ff6131169e6e136d41cfae1e7641a81fa03b51544611",
+    "release_sha256": "7d8a292907defa3f3546ff6131169e6e136d41cfae1e7641a81fa03b51544611"
+  },
+  {
+    "id": "selection_30",
+    "source_relative": "selection_analysis/scripts/30_merge_figure7c_kofam.R",
+    "released_relative": "analysis/selection_analysis/scripts/30_merge_figure7c_kofam.R",
+    "language": ".R",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "bfca089e271965d17c53c94ef5003b50e87cfbdc6a3b1b6d497038fe804b5144",
+    "release_sha256": "bfca089e271965d17c53c94ef5003b50e87cfbdc6a3b1b6d497038fe804b5144"
+  },
+  {
+    "id": "selection_31",
+    "source_relative": "selection_analysis/scripts/31_prepare_kofam_unassigned_followup.R",
+    "released_relative": "analysis/selection_analysis/scripts/31_prepare_kofam_unassigned_followup.R",
+    "language": ".R",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "8d3bec7e3eefa58c01af73552a71a6672dc096aa0b578cdeed657940c46763ed",
+    "release_sha256": "8d3bec7e3eefa58c01af73552a71a6672dc096aa0b578cdeed657940c46763ed"
+  },
+  {
+    "id": "selection_32",
+    "source_relative": "selection_analysis/scripts/32_merge_blastkoala_followup.R",
+    "released_relative": "analysis/selection_analysis/scripts/32_merge_blastkoala_followup.R",
+    "language": ".R",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "698921d203f54ffafe7ad7fbe47df3858c3f8aa134fac23867cfa6a28ccb3f67",
+    "release_sha256": "698921d203f54ffafe7ad7fbe47df3858c3f8aa134fac23867cfa6a28ccb3f67"
+  },
+  {
+    "id": "selection_34",
+    "source_relative": "selection_analysis/scripts/34_plot_panelc_annotated_R.R",
+    "released_relative": "analysis/selection_analysis/scripts/34_plot_panelc_annotated_R.R",
+    "language": ".R",
+    "working_directory": "external analysis workspace; see module README",
+    "inputs": [
+      "CLI paths and stage-specific tables documented in module README"
+    ],
+    "outputs": [
+      "selection_analysis/results/"
+    ],
+    "requirements": [
+      "Python or R; see environment templates"
+    ],
+    "status": "syntax_check_only_external_inputs_required",
+    "notes": "Legacy Figure7 names refer to V4 Figure6. Existing counts and manual annotation reviews retained.",
+    "module": "selection_analysis",
+    "source_sha256": "b74e0fc5c52abf715db774c599e4c568c48c796a48abbbb054785a81145d8a88",
+    "release_sha256": "0e8fa7f4592bc193f9257e5998b57cba3aebd81008aea0d13ae4224390d2f980"
+  },
+  {
+    "id": "ale2_ko_matrix",
+    "source_relative": "ALE_2/full_ko_metabolic_analysis.py",
+    "released_relative": "analysis/ALE_2/full_ko_metabolic_analysis.py",
+    "language": "Python",
+    "working_directory": "ALE_2",
+    "inputs": [
+      "ALE_2/genome_x_family_copy_number_kegg_annotated.tsv",
+      "ALE_2/gene_family_membership.tsv",
+      "ALE_2/tree-gen-name-gff.xlsx",
+      "env:THERMAL_GENOME_GROUPS_JSON"
+    ],
+    "outputs": [
+      "ALE_2/full_ko_analysis/"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scipy",
+      "openpyxl"
+    ],
+    "status": "requires_external_inputs",
+    "notes": "Explicit cohort manifest replaces embedded genome-ID lists; counts checked.",
+    "module": "ALE_2",
+    "source_sha256": "aff844f516ba66dce7597d344e95b26d8188b587b11207e32844579661282292",
+    "release_sha256": "295f3bc8ba61f82fb143bad4c48ad7c6b463110dd0cdf6fd2f4ed5e6e68d5442"
+  },
+  {
+    "id": "rates_calculate_and_plot",
+    "source_relative": "ammonia_oxidation_rate_ESSD/fixed_coefficient_scenario_20261016/calculate_and_plot.py",
+    "released_relative": "analysis/ammonia_oxidation_rate_ESSD/fixed_coefficient_scenario_20261016/calculate_and_plot.py",
+    "language": "Python",
+    "working_directory": "ammonia_oxidation_rate_ESSD",
+    "inputs": [
+      "External observed-rate database and prepared grids; see module README"
+    ],
+    "outputs": [
+      "ammonia_oxidation_rate_ESSD/fixed_coefficient_scenario_20261016"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scipy",
+      "matplotlib",
+      "openpyxl"
+    ],
+    "status": "historical_exploratory_source_not_final_validation",
+    "notes": "Calculation and source-pair audit retained; temperature mismatch and upstream intermediate gaps unresolved.",
+    "module": "ammonia_oxidation_rate_ESSD",
+    "source_sha256": "50432c00a1d5eccdde1044fb0792877a439a69dcd06ae7cab9e0df609c8e590e",
+    "release_sha256": "c48afb8c2c50170b74688ad5fb82d00a739e993a8670552183f82754df6547bb"
+  },
+  {
+    "id": "rates_audit_pairs",
+    "source_relative": "ammonia_oxidation_rate_ESSD/rate_link_revision_20261019/pair_audit/audit_pairs.py",
+    "released_relative": "analysis/ammonia_oxidation_rate_ESSD/rate_link_revision_20261019/pair_audit/audit_pairs.py",
+    "language": "Python",
+    "working_directory": "ammonia_oxidation_rate_ESSD",
+    "inputs": [
+      "External observed-rate database and prepared grids; see module README"
+    ],
+    "outputs": [
+      "ammonia_oxidation_rate_ESSD/rate_link_revision_20261019/pair_audit"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scipy",
+      "matplotlib",
+      "openpyxl"
+    ],
+    "status": "historical_exploratory_source_not_final_validation",
+    "notes": "Calculation and source-pair audit retained; temperature mismatch and upstream intermediate gaps unresolved.",
+    "module": "ammonia_oxidation_rate_ESSD",
+    "source_sha256": "187de070b202b07be19e5db92ca6a6482fad5abe1b830cf8153626f59207725d",
+    "release_sha256": "c3f856308647df2bb4ebfcd880b91f0dd719e47b68654e87997c790d03eb0471"
+  },
+  {
+    "id": "rates_run_empirical_diagnostic",
+    "source_relative": "ammonia_oxidation_rate_ESSD/rate_link_revision_20261019/empirical_diagnostic/run_empirical_diagnostic.py",
+    "released_relative": "analysis/ammonia_oxidation_rate_ESSD/rate_link_revision_20261019/empirical_diagnostic/run_empirical_diagnostic.py",
+    "language": "Python",
+    "working_directory": "ammonia_oxidation_rate_ESSD",
+    "inputs": [
+      "External observed-rate database and prepared grids; see module README"
+    ],
+    "outputs": [
+      "ammonia_oxidation_rate_ESSD/rate_link_revision_20261019/empirical_diagnostic"
+    ],
+    "requirements": [
+      "numpy",
+      "pandas",
+      "scipy",
+      "matplotlib",
+      "openpyxl"
+    ],
+    "status": "historical_exploratory_source_not_final_validation",
+    "notes": "Calculation and source-pair audit retained; temperature mismatch and upstream intermediate gaps unresolved.",
+    "module": "ammonia_oxidation_rate_ESSD",
+    "source_sha256": "bb5e8d2fea829a69b6fa14eb6bb2f1e04205f6a538cdb8a82602a4b45c7ef3e0",
+    "release_sha256": "1e849d83e596b688c59dd99cfbce2112f689960e93ce0a7a94407343a03921ad"
+  },
+  {
+    "id": "extract_ale_events",
+    "source_relative": null,
+    "released_relative": "analysis/ALE_2/extract_ale_events.py",
+    "language": ".py",
+    "working_directory": "explicit paths; see module README",
+    "inputs": [
+      "Original same-run ALE outputs and verified group inputs; see module README"
+    ],
+    "outputs": [
+      "User-supplied output directory"
+    ],
+    "requirements": [
+      "See environment templates"
+    ],
+    "status": "new_guard_workflow",
+    "notes": "Same-run verification required; no biological result validation claimed.",
+    "module": "ALE_2",
+    "source_sha256": null,
+    "release_sha256": "f38215536a5d06fed351de415237cbb03e4dedc8b2bdb9e9af29046dcac28cbb"
+  },
+  {
+    "id": "plot_accessory_repertoire",
+    "source_relative": "ALE_2/plot_Fig5_asymmetric_accessory.py",
+    "released_relative": "analysis/ALE_2/plot_accessory_repertoire.py",
+    "language": ".py",
+    "working_directory": "explicit paths; see module README",
+    "inputs": [
+      "Original same-run ALE outputs and verified group inputs; see module README"
+    ],
+    "outputs": [
+      "User-supplied output directory"
+    ],
+    "requirements": [
+      "See environment templates"
+    ],
+    "status": "adapted_source_pending_data",
+    "notes": "Same-run verification required; no biological result validation claimed.",
+    "module": "ALE_2",
+    "source_sha256": "786dc3fd4aedd726eb2f2d0ba808c3ef18fc513986ea2480949f777b3bf74812",
+    "release_sha256": "370bedac8be3500938a99397e284a5c039a47760b4f08d9be363f91f20b6b1fe"
+  },
+  {
+    "id": "plot_branch_events",
+    "source_relative": "ALE_2/4trees_with_type_ring_no_branch_corrected.R",
+    "released_relative": "analysis/ALE_2/plot_branch_events.R",
+    "language": ".R",
+    "working_directory": "explicit paths; see module README",
+    "inputs": [
+      "Original same-run ALE outputs and verified group inputs; see module README"
+    ],
+    "outputs": [
+      "User-supplied output directory"
+    ],
+    "requirements": [
+      "See environment templates"
+    ],
+    "status": "adapted_source_pending_data",
+    "notes": "Same-run verification required; no biological result validation claimed.",
+    "module": "ALE_2",
+    "source_sha256": "d9eb49af4f4c49dd258b5bd8cda48ca669f487c9245534d56d50d58dae01375d",
+    "release_sha256": "52bb284b432bbf180e7194d14acd6984c76dda6c72fb3e4dcf821db1fbd83d35"
+  },
+  {
+    "id": "plot_functional_events",
+    "source_relative": "ALE_2/panelB_corrected_20261023/recalculate_plot_panelB.R",
+    "released_relative": "analysis/ALE_2/plot_functional_events.R",
+    "language": ".R",
+    "working_directory": "explicit paths; see module README",
+    "inputs": [
+      "Original same-run ALE outputs and verified group inputs; see module README"
+    ],
+    "outputs": [
+      "User-supplied output directory"
+    ],
+    "requirements": [
+      "See environment templates"
+    ],
+    "status": "adapted_source_pending_data",
+    "notes": "Same-run verification required; no biological result validation claimed.",
+    "module": "ALE_2",
+    "source_sha256": "dd4be5883bdd68cbd77fb1fa701de3f15f3ad757f41f9b39a57447940712fdc6",
+    "release_sha256": "4e83ddce76a218755020bc2e889aa77c2ad3fffcbec27697469a680ffec25caa"
+  },
+  {
+    "id": "verify_ale_mapping",
+    "source_relative": "ALE_2/4trees_with_type_ring_no_branch_corrected.R",
+    "released_relative": "analysis/ALE_2/verify_ale_mapping.R",
+    "language": ".R",
+    "working_directory": "explicit paths; see module README",
+    "inputs": [
+      "Original same-run ALE outputs and verified group inputs; see module README"
+    ],
+    "outputs": [
+      "User-supplied output directory"
+    ],
+    "requirements": [
+      "See environment templates"
+    ],
+    "status": "adapted_source_pending_data",
+    "notes": "Same-run verification required; no biological result validation claimed.",
+    "module": "ALE_2",
+    "source_sha256": "d9eb49af4f4c49dd258b5bd8cda48ca669f487c9245534d56d50d58dae01375d",
+    "release_sha256": "b6e5f73b2c1454072e66918a6d81bbc17405840080d79ad7517adcef5c8c2f37"
+  }
+]

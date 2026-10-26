@@ -31,4 +31,3 @@ Projected relative abundance is not a direct estimate of absolute population siz
 Compiled marine ammonia oxidation observations were examined in relation to temperature and substrate availability. Process-rate records and metagenomic abundance profiles represent different measurements. They were not assumed to provide matched, ecotype-specific activity estimates merely because they occurred in similar environments.
 
 This overview does not present a validated prediction of future global coastal ammonia oxidation rates.
-
